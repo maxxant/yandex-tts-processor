@@ -1,17 +1,16 @@
-package audiocacher
+package yandexTTS
 
 import (
+	"archive/zip"
+	"encoding/base64"
+	"errors"
+	"fmt"
+	"html/template"
+	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"github.com/titanium-codes/yandex-tts-processor/env"
-	"encoding/base64"
-	"fmt"
 	"os"
-	"io"
-	"html/template"
-	"archive/zip"
-	"github.com/kataras/go-errors"
-	"io/ioutil"
 	"strconv"
 	"strings"
 )
@@ -53,7 +52,7 @@ func getDefaultIfNotDefined(getter func() string, defaultValue string) string {
 Gets TTS for text query.
 In case of this tts already exists -> will return existing, otherwise will go to yandex server and return tts from there.
 Zips all audio files.
- */
+*/
 func GetTtsForText(text string) (string, error) {
 	log.Println("Getting tts for text =", text)
 	zipName := base64Encode(text)

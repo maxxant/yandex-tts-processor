@@ -1,4 +1,4 @@
-package env
+package yandexTTS
 
 import (
 	"os"
@@ -15,34 +15,39 @@ const (
 	DEFAULT_AUDIO_FORMAT = "DEFAULT_AUDIO_FORMAT"
 )
 
-func GetYandexKey() string {
+type Env struct{}
+
+// global var for env api namespace, eg. env.GetYandexKey()
+var env Env
+
+func (e Env) GetYandexKey() string {
 	return os.Getenv(YANDEX_KEY)
 }
 
-func GetDefaultLang() string {
+func (e Env) GetDefaultLang() string {
 	return os.Getenv(DEFAULT_LANG)
 }
 
-func GetDefaultSpeed() string {
+func (e Env) GetDefaultSpeed() string {
 	return os.Getenv(DEFAULT_SPEED)
 }
 
-func GetDefaultEmotion() string {
+func (e Env) GetDefaultEmotion() string {
 	return os.Getenv(DEFAULT_EMOTION)
 }
 
-func GetDefaultSpeaker() string {
+func (e Env) GetDefaultSpeaker() string {
 	return os.Getenv(DEFAULT_SPEAKER)
 }
 
-func GetDefaultQuality() string {
+func (e Env) GetDefaultQuality() string {
 	return os.Getenv(DEFAULT_QUALITY)
 }
 
-func GetDefaultAudioFormat() string {
+func (e Env) GetDefaultAudioFormat() string {
 	return os.Getenv(DEFAULT_AUDIO_FORMAT)
 }
 
-func GetPathForAudio() string {
+func (e Env) GetPathForAudio() string {
 	return os.Getenv(AUDIO_PATH)
 }
